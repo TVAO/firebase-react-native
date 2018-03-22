@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -5,14 +6,17 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import * as firebase from 'firebase';
 
-// Initialize Firebase // TODO: hide api key in env file 
+// Load environment variables 
+dotenv.config()  
+
 const config = {
-    apiKey: "apiKey",
-    authDomain: "projectId.firebaseapp.com",
-    databaseURL: "https://databaseName.firebaseio.com",
-    storageBucket: "bucket.appspot.com"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: `${process.env.REACT_APP_FIREBASE_PROJECT_ID}.firebaseapp.com`,
+    databaseURL: `https://${process.env.REACT_APP_FIREBASE_DATABASE_ID}.firebaseio.com`,
+    storageBucket: "",
+    messagingSenderId: `${process.env.REACT_APP_FIREBASE_MESSAGING_ID}`
   };
-  firebase.initializeA
+console.log(config)
 firebase.initializeApp(config);
 
 // Get a reference to the database service 
