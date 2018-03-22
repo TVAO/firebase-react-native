@@ -7,7 +7,7 @@ import * as firebase from 'firebase';
 class App extends Component {
 
   // Initialize component with state 
-  // Sets initial data 
+  // 1 Sets initial data 
   constructor() {
     super(); 
     this.state = { // State of component 
@@ -21,7 +21,7 @@ class App extends Component {
     const rootFirebaseRef = firebase.database().ref(); //.child('react');
     const speedRef = rootFirebaseRef.child('speed');
 
-    // Firebase realtime listener
+    // 2 Firebase realtime listener
     speedRef.on('value', snap => { 
       // On method allows to synchronize real-time 
       // Attached to reference in database 
@@ -29,7 +29,6 @@ class App extends Component {
       this.setState({ // Re render app with new data 
         speed: snap.val()
       });
-      console.log(snap.val());
     });
   }
 
